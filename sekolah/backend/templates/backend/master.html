@@ -130,11 +130,11 @@
                 <div class="menu-title">Berita</div>
               </a>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>Tambah Berita</a>
+                <li> <a href="{% url 'add-berita' %}"><i class="bi bi-circle"></i>Tambah Berita</a>
                 </li>
               </ul>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>List Berita</a>
+                <li> <a href="{% url 'detail-berita' %}"><i class="bi bi-circle"></i>List Berita</a>
                 </li>
               </ul>
             </li>
@@ -145,7 +145,19 @@
                 <div class="menu-title">Profil</div>
               </a>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>List Pengaduan</a>
+                <li> <a href="{% url 'sejarah' %}"><i class="bi bi-circle"></i>Sejarah Singkat</a>
+                </li>
+              </ul>
+              <ul>
+                <li> <a href="{% url 'prakata' %}"><i class="bi bi-circle"></i>Prakata KepSek</a>
+                </li>
+              </ul>
+              <ul>
+                <li> <a href="{% url 'visi' %}"><i class="bi bi-circle"></i>Visi dan Misi</a>
+                </li>
+              </ul>
+              <ul>
+                <li> <a href="{% url 'add-struktur' %}"><i class="bi bi-circle"></i>Struktur Organisasi</a>
                 </li>
               </ul>
             </li>
@@ -347,6 +359,8 @@
     new PerfectScrollbar(".best-product")
  </script>
 
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </body>
 

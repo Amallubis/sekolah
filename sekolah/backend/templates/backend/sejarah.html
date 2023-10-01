@@ -1,0 +1,18 @@
+{% extends "backend/master.html" %}
+{% load crispy_forms_tags %}
+
+{% block dashboard %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form action="{% url 'sejarah' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form | crispy}}
+                <img src="{{sejarah.foto.url}}" alt="" srcset="" style="height: 400px; width:600px">
+                <br>
+                <button type="submit" class="btn btn-primary mt-2 ">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
