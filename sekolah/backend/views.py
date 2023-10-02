@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,VisidanMisi,StrukturOrganisasi,Berita
-from backend.forms import FormSejarah, FormPrakata, FormVisidanMisi, FormStrukturOrganisasi, FormBerita
+from backend.models import Sejarah, PrakataKepalaSekolah,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header
+from backend.forms import FormSejarah, FormPrakata, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader
 
 # Create your views here.
 
@@ -145,3 +145,40 @@ def delete_berita(request,id_delete):
     berita = Berita.objects.get(id=id_delete) 
     berita.delete()
     return redirect('detail-berita')
+
+
+
+#Settingan
+
+def header(request):
+    if request.POST:
+        header = Header.objects.get(pk=1)
+        form = FormHeader(request.POST, request.FILES, instance=header)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Header berhasil diubah') 
+            header = Header.objects.get(pk=1)
+            form = FormHeader(instance=header)
+            header = Header.objects.get(pk=1)
+            return render(request, 'backend/edit-header.html',{'form':form,'header':header})
+    else:
+        header = Header.objects.get(pk=1)
+        form = FormHeader(instance=header)
+        return render(request,'backend/edit-header.html',{'form':form, 'header':header})
+        
+
+
+def footer(request):
+    if request.POST:
+        footer = Footer.objects.get(pk=1)
+        form = FormFooter(request.POST, instance=footer)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil diupdate')
+            footer = Footer.objects.get(pk=1)
+            form = FormFooter(instance=footer)
+            return render(request,'backend/edit-footer.html',{'form':form,'footer':footer })
+    else:
+        footer = Footer.objects.get(pk=1)
+        form = FormFooter(instance=footer)
+        return render(request,'backend/edit-footer.html',{'form':form,'footer':footer})

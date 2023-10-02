@@ -15,4 +15,9 @@ urlpatterns = [
     path('delete-berita/<int:id_delete>/',views.delete_berita, name='delete-berita'),
     path('detail-berita',views.detail_berita, name='detail-berita'),
 
+    #Setting
+    path('edit-header',views.header, name='edit-header'),
+    path('edit-footer',views.footer, name='edit-footer'),
+    
+
 ]

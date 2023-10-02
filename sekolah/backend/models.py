@@ -47,3 +47,27 @@ class Berita(models.Model):
     def __str__(self):
         return self.judul
 
+
+#settingan 
+#Haeder 
+class Header(models.Model):
+    judul = models.CharField(max_length=200)
+    foto = models.ImageField(upload_to='header/')
+
+    def __str__(self):
+        return self.judul
+    
+
+    
+#footer
+class Footer(models.Model):
+    judul = models.CharField(max_length=255)
+    alamat= models.TextField()
+    email = models.EmailField(default='') 
+    nohp  = models.CharField(max_length=12)
+    fb    = models.CharField(max_length=200)
+    ig    = models.CharField(max_length=200)
+    tw    = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.judul

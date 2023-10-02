@@ -118,7 +118,7 @@
                 <div class="menu-title">Dashboard</div>
               </a>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>Dashboard</a>
+                <li> <a href="{% url 'dashboard' %}"><i class="bi bi-circle"></i>Dashboard</a>
                 </li>
               </ul>
             </li>
@@ -246,6 +246,21 @@
               </a>
               <ul>
                 <li> <a href="#"><i class="bi bi-circle"></i>Aktivasi</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-grid-fill"></i>
+                </div>
+                <div class="menu-title">Setting</div>
+              </a>
+              <ul>
+                <li> <a href="{% url 'edit-header' %}"><i class="bi bi-circle"></i>Header</a>
+                </li>
+              </ul>
+              <ul>
+                <li> <a href="{% url 'edit-footer' %}"><i class="bi bi-circle"></i>Footer</a>
                 </li>
               </ul>
             </li>
