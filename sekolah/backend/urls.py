@@ -5,6 +5,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('sejarah/', views.sejarah, name='sejarah'),
     path('prakata/', views.prakata, name='prakata'),
+    path('prakatasmp/', views.prakatasmp, name='prakatasmp'),
     path('visi/', views.visidanmisi, name='visi'),
     path('add-struktur/', views.add_struktur, name='add-struktur'),
     path('edit-struktur/<int:id_edit>/', views.edit_struktur, name='edit-struktur'),
@@ -18,6 +19,11 @@ urlpatterns = [
     #Setting
     path('edit-header',views.header, name='edit-header'),
     path('edit-footer',views.footer, name='edit-footer'),
+
+    #contact
+    path('contact/',views.contact, name='contact'),
+    path('hapus-contact/<int:id_hapus>/',views.hapus, name='hapus-contact'),
+
     
 
 ]

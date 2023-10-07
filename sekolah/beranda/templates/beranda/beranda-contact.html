@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block contents %}
+{% include "snippet/header.html" %}
+<!-- SHOWOFF 1 -->
+<section id="showoff-1" class="bg-light text-muted py-5" data-aos="fade-up">
+    <div class="container">
+    <div class="row">
+        <div class="col">
+        <ol class="breadcrumb bg-white ms-0 mt-4 mb-4">
+            <li class="breadcrumb-item">
+                <a href="{% url 'beranda' %}" class="text-info text-decoration-none">
+                    Home</a>
+            </li>
+            <li class="breadcrumb-item active">Contact</li>
+        </ol>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Contact Kami</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Hubungin kami jika ada pertanyaan mengenai Perguruan Advent Lubuk Pakam</p>
+                    </div>
+                        {% for messaga in messages  %}
+                <div class="alert alert-success">
+                        {% if messaga %}
+                            {{messaga}}
+                        {% endif %}
+                    </div>
+                        {% endfor %}
+                </div>
+                <form action="{% url 'beranda-contact' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <button type="submit" class="btn btn-info">Kirim</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                            <img src="{% static 'img/contact.png' %}" alt="" srcset=""> 
+                    <h4>(061) 7955117</h4>
+                    <p>Kami selalu bahagia bisa melayani Anda!</p>
+                    </div>
+                </div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.147049318103!2d98.87370397499961!3d3.5535656505334745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031486c92b32a79%3A0x51276ffb8ec948a5!2sGKPI%20Lubukpakam%20Kota!5e0!3m2!1sid!2sid!4v1696580719652!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

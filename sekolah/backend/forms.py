@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from backend.models import Sejarah, PrakataKepalaSekolah, VisidanMisi, StrukturOrganisasi, Berita, Header, Footer
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, Berita, Header, Footer
 
 class FormSejarah(ModelForm):
     class Meta:
@@ -10,6 +10,10 @@ class FormSejarah(ModelForm):
 class FormPrakata(ModelForm):
     class Meta:
         model = PrakataKepalaSekolah
+        fields = '__all__'
+class FormPrakatasmp(ModelForm):
+    class Meta:
+        model = PrakataKepalaSekolahsmp
         fields = '__all__'
 
         

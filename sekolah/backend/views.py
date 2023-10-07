@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header
-from backend.forms import FormSejarah, FormPrakata, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader
-
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader
+from beranda.models import Contact
 # Create your views here.
 
 def dashboard(request):
@@ -43,6 +43,20 @@ def prakata(request):
         prakata = PrakataKepalaSekolah.objects.get(pk=1)
         form = FormPrakata(instance=prakata)
         return render(request,'backend/prakata.html',{'form':form,'prakata':prakata}) 
+def prakatasmp(request):
+    if request.POST:
+        prakatasmp = PrakataKepalaSekolahsmp.objects.get(pk=1) 
+        form = FormPrakatasmp(request.POST, request.FILES, instance=prakatasmp)
+        if form.is_valid():
+            form.save()
+            prakatasmp = PrakataKepalaSekolahsmp.objects.get(pk=1)
+            form = FormPrakata(instance=prakatasmp)
+            messages.success(request,'Berhasil diupdate')
+            return render(request,'backend/prakatasmp.html',{'form':form,'prakatasmp':prakatasmp})
+    else:
+        prakatasmp = PrakataKepalaSekolahsmp.objects.get(pk=1)
+        form = FormPrakata(instance=prakatasmp)
+        return render(request,'backend/prakatasmp.html',{'form':form,'prakatasmp':prakatasmp}) 
 
 
 def visidanmisi(request):
@@ -182,3 +196,18 @@ def footer(request):
         footer = Footer.objects.get(pk=1)
         form = FormFooter(instance=footer)
         return render(request,'backend/edit-footer.html',{'form':form,'footer':footer})
+    
+    
+    
+def contact(request):
+    contact = Contact.objects.all()
+    context ={
+        'title':'Contact',
+        'contact':contact
+    }
+    return render(request,'backend/contact.html',context) 
+
+def hapus(request,id_hapus):
+    contact = Contact.objects.get(id=id_hapus)
+    contact.delete()
+    return redirect('contact')

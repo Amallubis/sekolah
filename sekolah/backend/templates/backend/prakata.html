@@ -4,11 +4,11 @@
 {% block dashboard %}
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <form action="{% url 'prakata' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form | crispy}}
-                <img src="{{prakata.foto.url}}" alt="" srcset="" style="height: 400px; width:600px">
+                <img src="{{prakata.foto.url}}" alt="" srcset="" style="height: 200px; width:400px">
                 <br>
                 <button type="submit" class="btn btn-primary mt-2 ">Update</button>
             </form>

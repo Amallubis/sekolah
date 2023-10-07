@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block contents %}
+{% include "snippet/header.html" %}
+<!-- SHOWOFF 1 -->
+<section id="showoff-1" class="bg-light text-muted py-5" data-aos="fade-up">
+    <div class="container">
+    <div class="row">
+        <div class="col">
+        <ol class="breadcrumb bg-white ms-0 mt-4 mb-4">
+            <li class="breadcrumb-item">
+                <a href="{% url 'beranda' %}" class="text-info text-decoration-none">
+                    Home</a>
+            </li>
+            <li class="breadcrumb-item active">Struktur Organisasi</li>
+        </ol>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Nama</th>
+                        <th>Jabatan</th>
+                        <th>Foto</th>
+                    </tr>
+                {% for s in struktur  %}
+                    <tr>
+                        <td>{{s.nama}}</td>
+                        <td>{{s.jabatan}}</td>
+                        <td>
+                            <img src="{{s.foto.url}}" alt="" srcset="" style="height: 200px; width:200px;">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

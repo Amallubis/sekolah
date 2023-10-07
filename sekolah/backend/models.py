@@ -17,6 +17,13 @@ class PrakataKepalaSekolah(models.Model):
     def __str__(self):
         return self.judul
 
+class PrakataKepalaSekolahsmp(models.Model):
+    judul      = models.CharField(max_length=255)
+    keterangan = models.TextField()
+    fotosmp       = models.ImageField(upload_to='foto/')
+    def __str__(self):
+        return self.judul
+
 
 class VisidanMisi(models.Model):
     judul      = models.CharField(max_length=255)
@@ -46,6 +53,12 @@ class Berita(models.Model):
     
     def __str__(self):
         return self.judul
+
+
+#kurikulum
+class Kurikulum(models.Model):
+    pass
+
 
 
 #settingan 

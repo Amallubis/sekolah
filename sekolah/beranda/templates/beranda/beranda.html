@@ -1,152 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block contents %}
-<div class="container-fluid py-3" style="background-color:#008080">
-    <div class="row">
-        <div class="col-md-8">
-            <h5 class="bold" style="color: white;">{{waktu}}</h5>
-        </div>
-        <div class="col-md-4 ">
-                        <a href="#" class=" se text-decoration-none me-2">
-                            <i class="bi-facebook fs-5"></i>
-                        </a>
-                        <a href="#" class="text-decoration-none me-2">
-                            <i class="bi-twitter fs-5"></i>
-                        </a>
-                        <a href="#" class="text-decoration-none me-2">
-                            <i class="bi-instagram fs-5"></i>
-                        </a>
-                        <a href="#" class="text-decoration-none me-2">
-                            <i class="bi-whatsapp fs-5"></i>
-                        </a>
-        </div>
-    </div>
-</div>
-<div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{header.foto.url}}" class="d-block w-100" alt="..." style="height:500px;" >
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-expand-lg justify-content-center" style="background-color: #008080;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'beranda' %}"><ion-icon name="home" size="large" style="color:white"></ion-icon></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="color: white;">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" style="color: white;">BERANDA</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                        PROFIL
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Sejarah Singkat</a></li>
-                        <li><a class="dropdown-item" href="#">Prakata Kepala Sekolah</a></li>
-                        <li><a class="dropdown-item" href="#">Visi dan Misi</a></li>
-                        <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                        KURIKULUM 
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Info Kurikulum</a></li>
-                        <li><a class="dropdown-item" href="#">Kelender Akademik</a></li>
-                        <li><a class="dropdown-item" href="#">Visi dan Misi</a></li>
-                        <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                    PROGRAM SEKOLAH 
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Program Kerja</a></li>
-                        <li><a class="dropdown-item" href="#">Peraturan-peraturan Permendikbud</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                    GTK                        
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Informasi Guru</a></li>
-                        <li><a class="dropdown-item" href="#">Informasi Tenaga Pendidikan</a></li>
-                        <li><a class="dropdown-item" href="#">Prestasi Guru</a></li>
-                        <li><a class="dropdown-item" href="#">Tugas dan Fungsi</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                    KESISWAAN                        
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Prestasi Siswa</a></li>
-                        <li><a class="dropdown-item" href="#">Informasi Peserta didik</a></li>
-                        <li><a class="dropdown-item" href="#">Ekstrakulikuler</a></li>
-                        <li><a class="dropdown-item" href="#">Osis</a></li>
-                        <li><a class="dropdown-item" href="#">Beasiswa</a></li>
-                        <li><a class="dropdown-item" href="#">Informasi Pemetaan Lulusan</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;">
-                    KEGIATAN SEKOLAH
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Agenda Kegiatan</a></li>
-                        <li><a class="dropdown-item" href="#">PPDB (Penerimaan Peserta Didik Baru)</a></li>
-                        <li><a class="dropdown-item" href="#">Laporan Kegiatan Sekolah</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color:white">
-                       DOWNLOAD 
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Produk Hukum</a></li>
-                        <li><a class="dropdown-item" href="#">Kurikulum Merdeka</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color:white">
-                      LINK TERKAIT 
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="disdik.deliserdangkab.go.id">Dinas Pendidikan Deli Serdang</a></li>
-                        <li><a class="dropdown-item" href="https://www.kemdikbud.go.id">Kementrian Pendidikan</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white">INOVASI SEKOLAH</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white">KONTAK</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
+{% include "snippet/header.html" %}
+{% include "snippet/navbar.html" %}
 <div class="container">
     <div class="row">
-        <div class="col-md-4"><h5>Berita Terbaru</h5></div>
-        <div class="col-md-8 py-3">
-                <marquee behavior="" direction=""><a href="http://detik.com" style="text-decoration: none;"><ion-icon name="newspaper-outline"></ion-icon> Ini berita baru dari serbang</a></marquee>
         </div>
     </div>
 </div>
@@ -169,12 +28,9 @@
                     <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}">
                         <img src="{{b.foto.url}}" class="d-block w-100" alt="..." style="height: 500px;">
                         <div class="carousel-caption d-none d-md-block">
-                            <a href="#" style="text-decoration: none;">
+                            <a href="{% url 'beranda-berita' b.id %}" style="text-decoration: none;">
                             <h3 class="bold text-light" >{{b.judul}}</h3>
                             </a>
-                            <p>
-                                <a href="">{{b.keterangan | truncatechars:20}}</a>
-                            </p>
                         </div>
                     </div>
                       
@@ -189,30 +45,17 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
-        <div class="col-md-4 justify-content-center">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center">Jadwal</h2>
-                </div>
-            <div class="card-body">
-                hello   
-            </div>
-            <div class="card-footer">
-
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
                 <div class="row">
                     {% for b in berita  %}
                 <div class="col-md-4 py-2 pb-2">
                     <div class="card">
                         <img class="card-img-top" src=" {{b.foto.url}}">
                         <div class="card-body">
-                            <h5 class="card-title">{{b.judul}}</h5>
+                            <h5 class="card-title">
+                                <a href="{% url 'beranda-berita' b.id %}" style="text-decoration: none;">
+
+                                {{b.judul}}</h5>
+                                </a> 
                             <p class="card-text">{{b.keterangan | truncatechars:50}}</p>
                             <p class="card-text">
                                 <small class="text-muted">{{b.update}}</small>
@@ -223,6 +66,25 @@
                     {% endfor %}
                 </div>
         </div>
-    </div>
-
+        <div class="col-md-4 justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Sambutan Kepala Sekolah</h2>
+                </div>
+                <img src="{{prakata.foto.url}}" alt="" srcset="" style="height: 300px;">
+            <div class="card-body">
+                <h3 class="head bold">{{prakata.judul}}</h3>
+               <p>{{prakata.keterangan|truncatechars:300}}</p> 
+               <a href="{% url 'beranda-prakata'%}" style="text-decoration: none;">More</a>
+            </div>
+            <br>
+                <img src="{{prakatasmp.fotosmp.url}}" alt="" srcset="" style="height: 300px;">
+            <div class="card-body">
+                <h3 class="head bold">{{prakata.judul}}</h3>
+               <p>{{prakatasmp.keterangan|truncatechars:300}}</p> 
+               <a href="{% url 'beranda-prakata'%}" style="text-decoration: none;">More</a>
+            </div>
+            </div>
+        </div>
+        </div>
 {% endblock contents %}
