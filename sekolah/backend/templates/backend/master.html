@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href=" {% static "assets/images/favicon32.png" %} " type="image/png" />
+  <link rel="icon" href=" {% static "assets/images/favicon.png" %} " type="image/png" />
   <!--plugins-->
   <link href="{% static "assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" %}" rel="stylesheet"/>
   <link href="{% static "assets/plugins/simplebar/css/simplebar.css" %}" rel="stylesheet" />
@@ -205,7 +205,7 @@
                 <div class="menu-title">Kesiswaan</div>
               </a>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>Aktivasi</a>
+                <li> <a href="{% url 'prestasi-sekolah' %}"><i class="bi bi-circle"></i>Prestasi Sekolah</a>
                 </li>
               </ul>
             </li>

@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah
 from beranda.models import Contact
 # Create your views here.
 
 def dashboard(request):
+    berita = Berita.objects.count()
+    contact = Contact.objects.count()
     context ={
-        'title':'Dashboard'
+        'title':'Dashboard',
+        'berita':berita,
+        'contact':contact
+        
     }
     return render(request,'backend/dashboard.html',context)
 
@@ -211,3 +216,43 @@ def hapus(request,id_hapus):
     contact = Contact.objects.get(id=id_hapus)
     contact.delete()
     return redirect('contact')
+
+
+#PRestasi Sekolah
+
+def prestasisekolah(request):
+    if request.POST:
+        form = FormPrestasiSekolah(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormPrestasiSekolah()
+            prestasi = PrestasiSekolah.objects.all()
+            messages.success(request,'Berhasil menambahkan Prestasi')
+            return render(request,'backend/prestasisekolah.html',{'form':form,'prestasi':prestasi})
+    else:
+        form = FormPrestasiSekolah()
+        prestasi = PrestasiSekolah.objects.all()
+        return render(request,'backend/prestasisekolah.html',{'form':form,'prestasi':prestasi})
+
+def edit_prestasi(request,id_edit):
+    if request.POST:
+        p= PrestasiSekolah.objects.get(id=id_edit)
+        form = FormPrestasiSekolah(request.POST, instance=p)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil diupdate')
+            p=PrestasiSekolah.objects.get(id=id_edit)
+            form = FormPrestasiSekolah(instance=p)
+            return render(request,'backend/editprestasi.html',{'form':form,'p':p})
+
+    else:
+        p= PrestasiSekolah.objects.get(id=id_edit)
+        form = FormPrestasiSekolah(instance=p)
+        return render(request,'backend/editprestasi.html',{'form':form,'p':p})
+
+
+
+def delete_prestasi(request,id_delete):
+    p = PrestasiSekolah.objects.get(id = id_delete)
+    p.delete()
+    return redirect('prestasi-sekolah')

@@ -1,0 +1,56 @@
+{% extends "backend/master.html" %}
+{% load crispy_forms_tags %}
+
+{% block dashboard %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% for message in messages  %}
+                {% if message %}
+                    <div class="alert alert-success">{{message}}</div>
+                {% endif %}
+            {% endfor %}
+            <form action="{% url 'prestasi-sekolah' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form | crispy}}
+                <button type="submit" class="btn btn-primary mt-2 ">Add Prestasi</button>
+                <br>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Nama Lomba</th>
+                    <th>Tingkat Kejuaraan</th>
+                    <th>Juara</th>
+                    <th>Tanggal Pelaksanaan</th>
+                    <th>Tempat Penyelenggaraan</th>
+                    <th>Action</th>
+                </tr>
+                    {% for j in prestasi  %}
+                <tr>
+                    <td>{{j.nama_lengkap}}</td>
+                    <td>{{j.kelas_jurusan}}</td>
+                    <td>{{j.nama_lomba}}</td>
+                    <td>{{j.tingkat_kejuaraan}}</td>
+                    <td>{{j.juara}}</td>
+                    <td>{{j.tanggal_pelaksanaan}}</td>
+                    <td>{{j.tempat_penyelenggaraan}}</td>
+                     <td>
+                        <a href="{% url 'delete-prestasi' j.id %}">
+                        <i class="bi bi-trash text-danger"></i>
+                        </a>
+                        <br>
+                        <a href="{% url 'edit-prestasi' j.id %}">
+                            <i class="bi bi-hammer"></i>
+                        </a>
+                     </td>
+                </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}

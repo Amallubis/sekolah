@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block contents %}
+{% include "snippet/header.html" %}
+<!-- SHOWOFF 1 -->
+<section id="showoff-1" class="bg-light text-muted py-5" data-aos="fade-up">
+    <div class="container">
+    <div class="row">
+        <div class="col">
+        <ol class="breadcrumb bg-white ms-0 mt-4 mb-4">
+            <li class="breadcrumb-item">
+                <a href="{% url 'beranda' %}" class="text-info text-decoration-none">
+                    Home</a>
+            </li>
+            <li class="breadcrumb-item active">Prestasi Sekolah</li>
+        </ol>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Prestasi Sekolah</h3>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-bordered table-light">
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <th>Kelas Jurusan</th>
+                        <th>Lomba</th>
+                        <th>Tingkat Kejuaraan</th>
+                        <th>Juara</th>
+                        <th>Tanggal Pelaksanaan</th>
+                        <th>Tempat Penyelenggaraan </th>
+                    </tr>
+                    {% for p in prestasi  %}
+                    <tr>
+                        <td>{{p.nama_lengkap}}</td>
+                        <td>{{p.kelas_jurusan}}</td>
+                        <td>{{p.nama_lomba}}</td>
+                        <td>{{p.tingkat_kejuaraan}}</td>
+                        <td>{{p.juara}}</td>
+                        <td>{{p.tanggal_pelaksanaan}}</td>
+                        <td>{{p.tempat_penyelenggaraan}}</td>
+                        
+                    </tr>
+                      
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

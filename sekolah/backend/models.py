@@ -59,7 +59,21 @@ class Berita(models.Model):
 class Kurikulum(models.Model):
     pass
 
+#Prestasi Sekolah
 
+class PrestasiSekolah(models.Model):
+    nama_lengkap  = models.CharField(max_length=49)
+    kelas_jurusan = models.CharField(max_length=50)
+    nama_lomba    = models.CharField(max_length=50)
+    tingkat_kejuaraan = models.CharField(max_length=100)
+    juara             = models.CharField(max_length=50)
+    tanggal_pelaksanaan = models.CharField(max_length=20) 
+    tempat_penyelenggaraan = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nama_lomba
+
+    pass
 
 #settingan 
 #Haeder 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah
 from beranda.forms import FormContact
 
 import datetime
@@ -144,3 +144,16 @@ def programsekolah(request):
        'footer':footer
     }
     return render(request,'beranda/programsekolah.html',context)
+
+
+def beranda_prestasi(request):
+    prestasi = PrestasiSekolah.objects.all().order_by('-pk')
+    header = Header.objects.get(pk=1)
+    footer = Footer.objects.get(pk=1)
+    context ={
+        'title':'Prestasi Sekolah',
+        'header':header,
+        'footer':footer,
+        'prestasi':prestasi
+    }
+    return render(request,'beranda/beranda-prestasisekolah.html',context)

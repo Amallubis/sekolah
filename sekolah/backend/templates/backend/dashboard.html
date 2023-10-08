@@ -1,5 +1,35 @@
 {% extends "backend/master.html" %}
 
 {% block dashboard %}
-  
+ 
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Berita</h4>
+                </div>
+                <div class="card-body">
+                    <h1>{{berita}}</h1>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'detail-berita' %}" class="btn btn-info active">Check</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Pesan</h4>
+                </div>
+                <div class="card-body">
+                    <h1>{{contact}}</h1>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'contact'%}" class="btn btn-info active">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock dashboard %}

@@ -11,4 +11,5 @@ urlpatterns = [
     path('beranda-kurikulum/', views.beranda_kurikulum, name='beranda-kurikulum'),
     path('beranda-contact/',views.beranda_contact, name='beranda-contact'),
     path('programsekolah/',views.programsekolah, name='programsekolah'),
+    path('beranda-prestasi/',views.beranda_prestasi, name='beranda-prestasi'),
 ]

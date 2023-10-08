@@ -23,7 +23,11 @@ urlpatterns = [
     #contact
     path('contact/',views.contact, name='contact'),
     path('hapus-contact/<int:id_hapus>/',views.hapus, name='hapus-contact'),
-
+    
+    #prestasi Sekolah
+    path('prestasi-sekolah/',views.prestasisekolah,name='prestasi-sekolah'),
+    path('edit-prestasi/<int:id_edit>/',views.edit_prestasi,name='edit-prestasi'),
+    path('delete-prestasi/<int:id_delete>/',views.delete_prestasi,name='delete-prestasi'),
     
 
 ]

@@ -1,0 +1,22 @@
+{% extends "backend/master.html" %}
+{% load crispy_forms_tags %}
+
+{% block dashboard %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% for message in messages  %}
+                {% if message %}
+                    <div class="alert alert-success">{{message}}</div>
+                {% endif %}
+            {% endfor %}
+            <form action="{% url 'edit-prestasi' p.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form | crispy}}
+                <button type="submit" class="btn btn-primary mt-2 ">Update Prestasi</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
