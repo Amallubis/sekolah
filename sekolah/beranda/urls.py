@@ -12,4 +12,5 @@ urlpatterns = [
     path('beranda-contact/',views.beranda_contact, name='beranda-contact'),
     path('programsekolah/',views.programsekolah, name='programsekolah'),
     path('beranda-prestasi/',views.beranda_prestasi, name='beranda-prestasi'),
+    path('beranda-beritaall/',views.beranda_beritaall, name='beranda-beritaall'),
 ]

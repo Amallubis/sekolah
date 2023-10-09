@@ -157,3 +157,18 @@ def beranda_prestasi(request):
         'prestasi':prestasi
     }
     return render(request,'beranda/beranda-prestasisekolah.html',context)
+
+
+
+def beranda_beritaall(request):
+    header = Header.objects.get(pk=1)
+    footer = Footer.objects.get(pk=1)
+    berita = Berita.objects.all()
+    context = {
+        'title':'Berita',
+        'header':header,
+        'footer':footer,
+        'berita':berita, 
+    }
+    return render(request,'beranda/beranda-beritaall.html',context)
+    
