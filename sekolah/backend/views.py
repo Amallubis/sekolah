@@ -3,8 +3,12 @@ from django.contrib import messages
 from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum
 from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum
 from beranda.models import Contact
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 # Create your views here.
 
+
+@login_required(login_url=settings.LOGIN_URL)
 def dashboard(request):
     berita = Berita.objects.count()
     contact = Contact.objects.count()
@@ -20,6 +24,7 @@ def dashboard(request):
 
 #Profil
 
+@login_required(login_url=settings.LOGIN_URL)
 def sejarah(request):
     if request.POST:
         sejarah = Sejarah.objects.get(pk=1)
@@ -36,6 +41,7 @@ def sejarah(request):
         return render(request,'backend/sejarah.html',{'form':form, 'sejarah':sejarah})
    
    
+@login_required(login_url=settings.LOGIN_URL)
 def prakata(request):
     if request.POST:
         prakata = PrakataKepalaSekolah.objects.get(pk=1) 
@@ -64,6 +70,7 @@ def prakatasmp(request):
         return render(request,'backend/prakatasmp.html',{'form':form,'prakatasmp':prakatasmp}) 
 
 
+@login_required(login_url=settings.LOGIN_URL)
 def visidanmisi(request):
     if request.POST:
         visi= VisidanMisi.objects.get(pk=1)
@@ -80,6 +87,7 @@ def visidanmisi(request):
         return render(request,'backend/visidanmisi.html',{'form':form, 'visi':visi})
        
 
+@login_required(login_url=settings.LOGIN_URL)
 def struktur(request):
     struktur = StrukturOrganisasi.objects.all().order_by('-pk')
     context ={
@@ -89,6 +97,7 @@ def struktur(request):
     return render(request,'backend/add-struktur.html',context)
 
     
+@login_required(login_url=settings.LOGIN_URL)
 def add_struktur(request):
     if request.POST:
         form = FormStrukturOrganisasi(request.POST, request.FILES)
@@ -104,6 +113,7 @@ def add_struktur(request):
         return render(request,'backend/add-struktur.html',{'form':form, 'struktur':struktur})
 
         
+@login_required(login_url=settings.LOGIN_URL)
 def edit_struktur(request,id_edit):
     if request.POST:
         struktur = StrukturOrganisasi.objects.get(id=id_edit)
@@ -120,6 +130,7 @@ def edit_struktur(request,id_edit):
         return render(request,'backend/edit-struktur.html',{'form':form,'struktur':struktur})
        
        
+@login_required(login_url=settings.LOGIN_URL)
 def delete_struktur(request,id_delete):
     struktur = StrukturOrganisasi.objects.get(id=id_delete)
     struktur.delete()
@@ -129,10 +140,12 @@ def delete_struktur(request,id_delete):
 
 
 #Berita 
+@login_required(login_url=settings.LOGIN_URL)
 def detail_berita(request):
     berita = Berita.objects.all() 
     return render(request,'backend/detail-berita.html',{'berita':berita})
 
+@login_required(login_url=settings.LOGIN_URL)
 def add_berita(request):
     if request.POST:
         form = FormBerita(request.POST, request.FILES)
@@ -145,6 +158,7 @@ def add_berita(request):
         form = FormBerita()
         return render(request,'backend/add-berita.html',{'form':form})
 
+@login_required(login_url=settings.LOGIN_URL)
 def edit_berita(request,id_edit):
     if request.POST:
         berita = Berita.objects.get(id=id_edit)
@@ -160,6 +174,7 @@ def edit_berita(request,id_edit):
         form = FormBerita(instance=berita)
         return render(request,'backend/edit-berita.html',{'form':form,'berita':berita})
 
+@login_required(login_url=settings.LOGIN_URL)
 def delete_berita(request,id_delete):
     berita = Berita.objects.get(id=id_delete) 
     berita.delete()
@@ -169,6 +184,7 @@ def delete_berita(request,id_delete):
 
 #Settingan
 
+@login_required(login_url=settings.LOGIN_URL)
 def header(request):
     if request.POST:
         header = Header.objects.get(pk=1)
@@ -187,6 +203,7 @@ def header(request):
         
 
 
+@login_required(login_url=settings.LOGIN_URL)
 def footer(request):
     if request.POST:
         footer = Footer.objects.get(pk=1)
@@ -204,6 +221,7 @@ def footer(request):
     
     
     
+@login_required(login_url=settings.LOGIN_URL)
 def contact(request):
     contact = Contact.objects.all()
     context ={
@@ -212,6 +230,7 @@ def contact(request):
     }
     return render(request,'backend/contact.html',context) 
 
+@login_required(login_url=settings.LOGIN_URL)
 def hapus(request,id_hapus):
     contact = Contact.objects.get(id=id_hapus)
     contact.delete()
@@ -220,6 +239,7 @@ def hapus(request,id_hapus):
 
 #PRestasi Sekolah
 
+@login_required(login_url=settings.LOGIN_URL)
 def prestasisekolah(request):
     if request.POST:
         form = FormPrestasiSekolah(request.POST)
@@ -234,6 +254,7 @@ def prestasisekolah(request):
         prestasi = PrestasiSekolah.objects.all()
         return render(request,'backend/prestasisekolah.html',{'form':form,'prestasi':prestasi})
 
+@login_required(login_url=settings.LOGIN_URL)
 def edit_prestasi(request,id_edit):
     if request.POST:
         p= PrestasiSekolah.objects.get(id=id_edit)
@@ -252,12 +273,14 @@ def edit_prestasi(request,id_edit):
 
 
 
+@login_required(login_url=settings.LOGIN_URL)
 def delete_prestasi(request,id_delete):
     p = PrestasiSekolah.objects.get(id = id_delete)
     p.delete()
     return redirect('prestasi-sekolah')
 
 
+@login_required(login_url=settings.LOGIN_URL)
 def list_kurikulum(request):
     kurikulum = Kurikulum.objects.all()
     context ={
@@ -266,6 +289,7 @@ def list_kurikulum(request):
     }
     return render(request,'backend/list-kurikulum.html',context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def add_kurikulum(request):
     if request.POST:
         form = FormKurikulum(request.POST)
@@ -278,6 +302,7 @@ def add_kurikulum(request):
         form = FormKurikulum()
         return render(request,'backend/add-kurikulum.html',{'form':form}) 
     
+@login_required(login_url=settings.LOGIN_URL)
 def edit_kurikulum(request,id_edit):
     if request.POST:
         k = Kurikulum.objects.get(id=id_edit)
@@ -293,6 +318,7 @@ def edit_kurikulum(request,id_edit):
         form =FormKurikulum(instance=k)
         return render(request,'backend/edit-kurikulum.html',{'form':form,'k':k})
     
+@login_required(login_url=settings.LOGIN_URL)
 def delete_kurikulum(request,id_delete):
     k = Kurikulum.objects.get(id=id_delete)
     k.delete()
