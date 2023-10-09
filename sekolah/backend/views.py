@@ -60,8 +60,6 @@ def prakatasmp(request):
         form = FormPrakatasmp(request.POST, request.FILES, instance=prakatasmp)
         if form.is_valid():
             form.save()
-            prakatasmp = PrakataKepalaSekolahsmp.objects.get(pk=1)
-            form = FormPrakata(instance=prakatasmp)
             messages.success(request,'Berhasil diupdate')
             return render(request,'backend/prakatasmp.html',{'form':form,'prakatasmp':prakatasmp})
     else:

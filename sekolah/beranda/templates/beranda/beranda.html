@@ -1,90 +1,141 @@
 {% extends "base.html" %}
 {% load static %}
-{% block contents %}
 
+
+{% block contents %}
 {% include "snippet/header.html" %}
 {% include "snippet/navbar.html" %}
-<div class="container">
-    <div class="row">
-        </div>
-    </div>
-</div>
 
-
+<section>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
-            <div id="carouselExampleCaptions" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    {% for b in berita  %}
-                    <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}">
-                        <img src="{{b.foto.url}}" class="d-block w-100" alt="..." style="height: 500px;">
-                        <div class="carousel-caption d-none d-md-block">
-                            <a href="{% url 'beranda-berita' b.id %}" style="text-decoration: none;">
-                            <h3 class="bold text-light" >{{b.judul}}</h3>
-                            </a>
-                        </div>
+        <div class="col-md-9">
+            <!--Slide Kiri-->
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
-                      
-                    {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-                <div class="row">
-                    {% for b in berita  %}
-                <div class="col-md-4 py-2 pb-2">
-                    <div class="card">
-                        <img class="card-img-top" src=" {{b.foto.url}}">
-                        <div class="card-body">
-                            <h5 class="card-title">
+                    <div class="carousel-inner">
+                        {% for b in berita %}
+                        <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}">
+                            <img src="{{b.foto.url}}" class="d-block w-100" alt="..." style="height: 500px;">
+                            <div class="carousel-caption d-none d-md-block">
                                 <a href="{% url 'beranda-berita' b.id %}" style="text-decoration: none;">
-
-                                {{b.judul}}</h5>
-                                </a> 
-                            <p class="card-text">{{b.keterangan | truncatechars:50}}</p>
-                            <p class="card-text">
-                                <small class="text-muted">{{b.update}}</small>
-                            </p>
+                                    <h3 class="bold text-light">{{b.judul}}</h3>
+                                </a>
+                            </div>
+                        </div>
+                
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-3 py-3">
+                <div class="card">
+                    <div class="card-header" style="background-color: #1A3153;">
+                        <h3 class="text-center" style="color: aliceblue;">Jadwal Kegiatan</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">
+                            jadwal APel dipagi hari
                         </div>
                     </div>
+                    <div class="footer">
+                        
+                    </div>
                 </div>
-                    {% endfor %}
+            </div>
+            <!--End Slide Kiri-->
+    </div>
+    </div>
+</section>
+
+
+<!-- SHOWOFF 1 -->
+<section id="showoff-1" class="bg-light text-muted py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{prakata.foto.url}}" alt="" class="img-fluid mb-3 img-thumbnail" style="height: 400px; width:400px">
+            </div>
+            <div class="col-md-6">
+                <h2>Kata Sambutan Kepala Sekolah SD</h2>
+                <p class="lead">
+                    {{prakata.judul}}
+                </p>
+                <p>{{prakata.keterangan | truncatechars:200}}</p>
+                <button class="btn btn-outline-info">Learn More</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SHOWOFF 2 -->
+<section id="showoff-2" class="text-muted py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Kata Sambutan Kepala SMP</h2>
+                <p class="lead">{{prakatasmp.judul}}
+                </p>
+                <p>{{prakatasmp.keterangan | truncatechars:200}}</p>
+                <button class="btn btn-outline-info mb-3">Learn More</button>
+            </div>
+            <div class="col-md-6">
+                <img src="{{prakatasmp.fotosmp.url}}" alt="" class="img-fluid mb-3 img-thumbnail" style="height: 400px; width:400px">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Berita Terkini</h1>
+                <hr class="w-25 mx-auto">
+                <p class="lead">
+                    Berita Terkini Tentang Seputaran Sekolah Advent Lubuk Pakam</p>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+            {% for b in berita  %}
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" src="{{b.foto.url}}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'beranda-berita' b.id %}" style="text-decoration: none;">
+                            {{b.judul}} 
+                            </a>
+                        </h5>
+                        <p class="lead">{{b.keterangan | truncatechars:100}}</p>
+                        <p class="card-text">
+                            {{b.isi | truncatechars:200}}</p>
+                        <p class="card-text">
+                            <small class="text-muted">{{b.update}}</small>
+                        </p>
+                    </div>
                 </div>
-        </div>
-        <div class="col-md-4 justify-content-center">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center">Sambutan Kepala Sekolah</h2>
-                </div>
-                <img src="{{prakata.foto.url}}" alt="" srcset="" style="height: 300px;">
-            <div class="card-body">
-                <h3 class="head bold">{{prakata.judul}}</h3>
-               <p>{{prakata.keterangan|truncatechars:300}}</p> 
-               <a href="{% url 'beranda-prakata'%}" style="text-decoration: none;">More</a>
             </div>
-            <br>
-                <img src="{{prakatasmp.fotosmp.url}}" alt="" srcset="" style="height: 300px;">
-            <div class="card-body">
-                <h3 class="head bold">{{prakata.judul}}</h3>
-               <p>{{prakatasmp.keterangan|truncatechars:300}}</p> 
-               <a href="{% url 'beranda-prakata'%}" style="text-decoration: none;">More</a>
-            </div>
-            </div>
+            {% endfor %}
         </div>
-        </div>
+    </div>
+</section>
+
 {% endblock contents %}
