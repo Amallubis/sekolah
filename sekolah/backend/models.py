@@ -57,7 +57,10 @@ class Berita(models.Model):
 
 #kurikulum
 class Kurikulum(models.Model):
-    pass
+    judul = models.CharField(max_length=200, default="")
+    keterangan = models.TextField(default="") 
+    def __str__(self):
+        self.judul
 
 #Prestasi Sekolah
 

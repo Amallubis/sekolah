@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum
 from beranda.models import Contact
 # Create your views here.
 
@@ -256,3 +256,44 @@ def delete_prestasi(request,id_delete):
     p = PrestasiSekolah.objects.get(id = id_delete)
     p.delete()
     return redirect('prestasi-sekolah')
+
+
+def list_kurikulum(request):
+    kurikulum = Kurikulum.objects.all()
+    context ={
+        'title':'Kurikulum',
+        'kurikulum':kurikulum
+    }
+    return render(request,'backend/list-kurikulum.html',context)
+
+def add_kurikulum(request):
+    if request.POST:
+        form = FormKurikulum(request.POST)
+        if form.is_valid():
+            form.save() 
+            messages.success(request,'Kurikulum Berhasil ditambahkan')
+            form = FormKurikulum()
+            return render(request,'backend/add-kurikulum.html',{'form':form})
+    else:
+        form = FormKurikulum()
+        return render(request,'backend/add-kurikulum.html',{'form':form}) 
+    
+def edit_kurikulum(request,id_edit):
+    if request.POST:
+        k = Kurikulum.objects.get(id=id_edit)
+        form = FormKurikulum(request.POST, instance=k)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Berhasil diupdate")
+            k = Kurikulum.objects.get(id=id_edit)
+            form = FormKurikulum(instance=k)
+            return render(request,'backend/edit-kurikulum.html',{'form':form, 'k':k})
+    else:
+        k = Kurikulum.objects.get(id=id_edit)
+        form =FormKurikulum(instance=k)
+        return render(request,'backend/edit-kurikulum.html',{'form':form,'k':k})
+    
+def delete_kurikulum(request,id_delete):
+    k = Kurikulum.objects.get(id=id_delete)
+    k.delete()
+    return redirect('list-kurikulum')

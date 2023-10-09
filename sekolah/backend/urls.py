@@ -28,6 +28,12 @@ urlpatterns = [
     path('prestasi-sekolah/',views.prestasisekolah,name='prestasi-sekolah'),
     path('edit-prestasi/<int:id_edit>/',views.edit_prestasi,name='edit-prestasi'),
     path('delete-prestasi/<int:id_delete>/',views.delete_prestasi,name='delete-prestasi'),
+
+    #kurikulum
+    path('list-kurikulum/',views.list_kurikulum, name='list-kurikulum'),
+    path('add-kurikulum/',views.add_kurikulum, name='add-kurikulum'),
+    path('edit-kurikulum/<int:id_edit>/',views.edit_kurikulum, name='edit-kurikulum'),
+    path('delete-kurikulum/<int:id_delete>/',views.delete_kurikulum, name='delete-kurikulum'),
     
 
 ]

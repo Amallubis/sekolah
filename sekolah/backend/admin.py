@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Sejarah,PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi, Berita,Header, Footer,PrestasiSekolah
+from backend.models import Sejarah,PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi, Berita,Header, Footer,PrestasiSekolah, Kurikulum
 # Register your models here.
 
 
@@ -11,6 +11,7 @@ admin.site.register(StrukturOrganisasi)
 
 #prestasi
 admin.site.register(PrestasiSekolah)
+admin.site.register(Kurikulum)
 #Berita
 admin.site.register(Berita)
 

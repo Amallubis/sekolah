@@ -1,0 +1,57 @@
+{% extends "backend/master.html" %}
+{% load crispy_forms_tags %}
+
+{% block dashboard %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'add-kurikulum' %}" class="btn btn-info mb-4"> Tambah Berita</a>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Judul</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in kurikulum %}
+                    <tr>
+                        <td>{{s.judul}}</td>
+                        <td>{{s.keterangan |truncatechars:50}}</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"><ion-icon name="trash-outline"
+                                    size="large"></ion-icon></a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah Anda yakin menghapus:{{s.judul | upper}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <a href="{% url 'delete-kurikulum' s.id %}" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'edit-kurikulum' s.id %}"><ion-icon name="hammer-outline" size="large"></ion-icon></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock dashboard %}
