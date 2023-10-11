@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext
 from beranda.forms import FormContact
 
 import datetime
@@ -12,12 +12,15 @@ def beranda(request):
     header = Header.objects.get(pk=1)
     footer = Footer.objects.get(pk=1)
     now = datetime.datetime.now()
+    running = Runningtext.objects.get(pk=1)
+    
     context ={
         'title':'Sekolah Advent Lubuk Pakam',
         'waktu':now,
         'berita':berita,
         'prakata':prakata,
         'prakatasmp':prakatasmp,
+        'running':running,
         'header':header,
         'footer':footer
     }

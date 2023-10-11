@@ -76,9 +76,21 @@ class PrestasiSekolah(models.Model):
     def __str__(self):
         return self.nama_lomba
 
-    pass
 
+#Agenda Kegiatan
+
+class Agenda(models.Model):
+    judul = models.CharField(max_length=255)
+    kegiatan = models.TextField()
+    jadwal = models.DateTimeField(auto_created=True)
+    def __str__(self):
+        return self.judul
 #settingan 
+
+class Runningtext(models.Model):
+    judul = models.CharField(max_length=255)
+    def __str__(self):
+        return self.judul
 #Haeder 
 class Header(models.Model):
     judul = models.CharField(max_length=200)

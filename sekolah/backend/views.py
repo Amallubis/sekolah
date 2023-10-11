@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext
 from beranda.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -321,3 +321,19 @@ def delete_kurikulum(request,id_delete):
     k = Kurikulum.objects.get(id=id_delete)
     k.delete()
     return redirect('list-kurikulum')
+
+
+def runningtext(request):
+    if request.POST:
+        running = Runningtext.objects.get(pk=1)
+        form = FormRunningtext(request.POST, instance=running)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil diupdate')
+            form = FormRunningtext(instance=running)
+            return render(request,'backend/running-text.html',{'form':form})
+    else:
+        running = Runningtext.objects.get(pk=1)
+        form = FormRunningtext(instance=running)
+        return render(request,'backend/running-text.html',{'form':form})
+        

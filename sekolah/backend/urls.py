@@ -35,5 +35,6 @@ urlpatterns = [
     path('edit-kurikulum/<int:id_edit>/',views.edit_kurikulum, name='edit-kurikulum'),
     path('delete-kurikulum/<int:id_delete>/',views.delete_kurikulum, name='delete-kurikulum'),
     
+    path('running-text/',views.runningtext, name='running-text'),
 
 ]
