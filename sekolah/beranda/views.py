@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda
 from beranda.forms import FormContact
 
 import datetime
@@ -9,6 +9,7 @@ def beranda(request):
     berita = Berita.objects.all().order_by('-pk')[0:6]
     prakata = PrakataKepalaSekolah.objects.get(pk=1)
     prakatasmp = PrakataKepalaSekolahsmp.objects.get(pk=1)
+    agenda = Agenda.objects.all().order_by('-pk')[0:5]
     header = Header.objects.get(pk=1)
     footer = Footer.objects.get(pk=1)
     now = datetime.datetime.now()
@@ -21,6 +22,7 @@ def beranda(request):
         'prakata':prakata,
         'prakatasmp':prakatasmp,
         'running':running,
+        'agenda':agenda,
         'header':header,
         'footer':footer
     }
@@ -174,4 +176,3 @@ def beranda_beritaall(request):
         'berita':berita, 
     }
     return render(request,'beranda/beranda-beritaall.html',context)
-    

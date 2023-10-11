@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda
 from beranda.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -322,7 +322,7 @@ def delete_kurikulum(request,id_delete):
     k.delete()
     return redirect('list-kurikulum')
 
-
+@login_required(login_url=settings.LOGIN_URL)
 def runningtext(request):
     if request.POST:
         running = Runningtext.objects.get(pk=1)
@@ -336,4 +336,39 @@ def runningtext(request):
         running = Runningtext.objects.get(pk=1)
         form = FormRunningtext(instance=running)
         return render(request,'backend/running-text.html',{'form':form})
+
+        
+def agenda(request):
+    if request.POST:
+        form = FormAgenda(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil menambahkan Agenda')
+            form = FormAgenda()
+            agenda = Agenda.objects.all()
+            return render(request,'backend/agenda.html',{'form':form, 'agenda':agenda})
+    else:
+        form = FormAgenda()
+        agenda = Agenda.objects.all()
+        return render(request,'backend/agenda.html',{'form':form,'agenda':agenda})
+    
+def edit_agenda(request,id_edit):
+    if request.POST:
+        agenda = Agenda.objects.get(id=id_edit)
+        form = FormAgenda(request.POST, instance=agenda) 
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil diupdate')
+            form = FormAgenda(instance=agenda)
+            return render(request,'backend/edit-agenda.html',{'form':form,'agenda':agenda})
+    else:
+        agenda = Agenda.objects.get(id=id_edit)
+        form = FormAgenda(instance=agenda)
+        return render(request,'backend/edit-agenda.html',{'form':form,'agenda':agenda})
+
+        
+def delete_agenda(request,id_delete):
+    agenda = Agenda.objects.get(id=id_delete)
+    agenda.delete()
+    return redirect('agenda')
         
