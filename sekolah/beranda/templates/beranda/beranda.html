@@ -81,7 +81,7 @@
                     {{prakata.judul}}
                 </p>
                 <p>{{prakata.keterangan | truncatechars:200}}</p>
-                <button class="btn btn-outline-info">Learn More</button>
+                <a href="{% url 'beranda-prakata' %}" class="btn btn-outline-info mb-3">Detail</a>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
                 <p class="lead">{{prakatasmp.judul}}
                 </p>
                 <p>{{prakatasmp.keterangan | truncatechars:200}}</p>
-                <button class="btn btn-outline-info mb-3">Learn More</button>
+                <a href="{% url 'beranda-prakata' %}" class="btn btn-outline-info mb-3">Detail</a>
             </div>
             <div class="col-md-6">
                 <img src="{{prakatasmp.fotosmp.url}}" alt="" class="img-fluid mb-3 img-thumbnail" style="height: 400px; width:400px">
