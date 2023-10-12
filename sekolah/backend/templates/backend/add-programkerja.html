@@ -1,5 +1,6 @@
 {% extends "backend/master.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block dashboard %}
 <div class="container">
@@ -15,6 +16,28 @@
                 {{form | crispy}}
                 <button type="submit" class="btn btn-primary mt-2 ">Tambah Program Kerja</button>
             </form>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Program kerja</th>
+                    <th>Keterangan</th>
+                    <th>Action</th>
+                </tr>
+                    {% for p in programkerja %}
+                <tr>
+                    <td>{{p.judul}}</td>
+                    <td>{{p.isi}}</td>
+                    <th>
+                        <a href="{% url 'delete-programkerja' p.id %}"><i class="bi bi-trash-fill" style="color: red;"></i>
+                        </a>
+                        <a href="{% url 'edit-programkerja' p.id %}"><i class="bi bi-pencil-square"></i></a>
+                    </th>
+                </tr>
+                    {% endfor %}
+            </table>
         </div>
     </div>
     </div>

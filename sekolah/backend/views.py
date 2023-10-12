@@ -374,15 +374,40 @@ def delete_agenda(request,id_delete):
 
 
 def addprogramkerja(request):
+    programkerja = ProgramKerja.objects.all().order_by('-pk')
     if request.POST:
         form = FormProgramKerja(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'Berhasil menambahkan Program Kerja')
+            programkerja=ProgramKerja.objects.all()
             form = FormProgramKerja()
-            return render(request,'backend/tambah-programkerja.html',{'form':form})
+            return render(request,'backend/add-programkerja.html',{'form':form,'programkerja':programkerja})
+
     else:
+        programkerja=ProgramKerja.objects.all().order_by('-pk')
         form = FormProgramKerja()
-        return render(request,'backend/add-programkerja.html',{'form':form})
+        return render(request,'backend/add-programkerja.html',{'form':form,'programkerja':programkerja})
         
         
+
+def editprogramkerja(request,id_edit):
+    if request.POST:
+        programkerja = ProgramKerja.objects.get(id = id_edit)
+        form = FormProgramKerja(request.POST, instance=programkerja)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil di update')
+            programkerja = ProgramKerja.objects.get(id=id_edit)
+            form = FormProgramKerja(instance=programkerja)
+            return render(request,'backend/edit-programkerja.html',{'form':form,'programkerja':programkerja})
+    else:
+        programkerja = ProgramKerja.objects.get(id=id_edit)
+        form = FormProgramKerja(instance=programkerja)
+        return render(request,'backend/edit-programkerja.html',{'form':form,'programkerja':programkerja})
+
+        
+def delete_programkerja(request,id_delete):
+    programkerja = ProgramKerja.objects.get(id=id_delete)
+    programkerja.delete()
+    return redirect('add-programkerja')

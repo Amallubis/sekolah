@@ -21,6 +21,22 @@
                 <h3>Program Sekolah</h3>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Program Kerja</th>
+                        <th>Keterangan</th>
+                    </tr>
+                    {% for p in programkerja  %}
+                            <tr>
+                                <td>{{p.judul}}</td>
+                                <td>{{p.isi}}</td>
+                            </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock contents %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum, ProgramKerja
 from beranda.forms import FormContact
 
 import datetime
@@ -143,12 +143,14 @@ def beranda_contact(request):
     
     
 def programsekolah(request):
+    programkerja = ProgramKerja.objects.all().order_by('-pk')
     header = Header.objects.get(pk=1)
     footer = Footer.objects.get(pk=1)
     context ={
        'title':'Program Sekolah',
        'header':header,
-       'footer':footer
+       'footer':footer,
+       'programkerja':programkerja
     }
     return render(request,'beranda/programsekolah.html',context)
 

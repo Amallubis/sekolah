@@ -41,4 +41,6 @@ urlpatterns = [
     path('delete-agenda/<int:id_delete>/',views.delete_agenda, name='delete-agenda'),
 
     path('add-programkerja/',views.addprogramkerja, name='add-programkerja'),
+    path('edit-programkerja/<int:id_edit>/',views.editprogramkerja, name='edit-programkerja'),
+    path('delete-programkerja/<int:id_delete>/',views.delete_programkerja, name='delete-programkerja'),
 ]
