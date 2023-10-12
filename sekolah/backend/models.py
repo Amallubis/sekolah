@@ -76,13 +76,18 @@ class PrestasiSekolah(models.Model):
     def __str__(self):
         return self.nama_lomba
 
+class ProgramKerja(models.Model):
+    judul = models.CharField(max_length=255)
+    isi = models.TextField()
 
+    def __str__(self):
+        return self.judul
 #Agenda Kegiatan
 
 class Agenda(models.Model):
     judul = models.CharField(max_length=255)
     kegiatan = models.TextField()
-    jadwal = models.DateTimeField(auto_created=True)
+    jadwal = models.DateTimeField(null=True)
     def __str__(self):
         return self.judul
 #settingan 

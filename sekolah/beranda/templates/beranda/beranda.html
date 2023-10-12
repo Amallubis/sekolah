@@ -52,7 +52,7 @@
                         {% for a in agenda  %}
                         <div class="card-title">
                         <img src="{% static 'img/calender.png' %}" alt="" srcset="" style="height: 50px; width:50px">
-                            {{a.kegiatan}}
+                            | <strong>{{a.jadwal}} | {{a.kegiatan}}</strong>
                         </div>
                           
                         {% endfor %}

@@ -29,6 +29,12 @@
   <link href="{% static "assets/css/light-theme.css" %}" rel="stylesheet" />
   <link href="{% static "assets/css/semi-dark.css" %}" rel="stylesheet" />
   <link href="{% static "assets/css/header-colors.css" %}" rel="stylesheet" />
+  
+<!--Datapicker-->
+  <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
 
   <title>{{title}}</title>
 </head>
@@ -185,7 +191,7 @@
                 <div class="menu-title">Program Sekolah</div>
               </a>
               <ul>
-                <li> <a href="#"><i class="bi bi-circle"></i>Aktivasi</a>
+                <li> <a href="{% url 'add-programkerja' %}"><i class="bi bi-circle"></i> Tambah Program Kerja</a>
                 </li>
               </ul>
             </li>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda, ProgramKerja
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda, FormProgramKerja
 from beranda.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -371,4 +371,18 @@ def delete_agenda(request,id_delete):
     agenda = Agenda.objects.get(id=id_delete)
     agenda.delete()
     return redirect('agenda')
+
+
+def addprogramkerja(request):
+    if request.POST:
+        form = FormProgramKerja(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil menambahkan Program Kerja')
+            form = FormProgramKerja()
+            return render(request,'backend/tambah-programkerja.html',{'form':form})
+    else:
+        form = FormProgramKerja()
+        return render(request,'backend/add-programkerja.html',{'form':form})
+        
         

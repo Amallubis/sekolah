@@ -21,6 +21,22 @@
                 <h3>Kurikulum</h3>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Kurikulum</th>
+                        <th>Keterangan</th>
+                    </tr>
+                    {% for k in kurikulum  %}
+                    <tr>
+                        <td>{{k.judul}}</td>
+                        <td>{{k.keterangan}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock contents %}

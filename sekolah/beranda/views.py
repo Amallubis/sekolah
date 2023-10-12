@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum
 from beranda.forms import FormContact
 
 import datetime
@@ -102,10 +102,12 @@ def beranda_berita(request, id_berita):
 
 
 def beranda_kurikulum(request):
+    kurikulum = Kurikulum.objects.all().order_by('-pk')
     header = Header.objects.get(pk=1)
     footer = Footer.objects.get(pk=1)
     context ={
         'title':'Kurikulum',
+        'kurikulum':kurikulum,
         'header':header,
         'footer':footer,
     }

@@ -40,4 +40,5 @@ urlpatterns = [
     path('edit-agenda/<int:id_edit>/',views.edit_agenda, name='edit-agenda'),
     path('delete-agenda/<int:id_delete>/',views.delete_agenda, name='delete-agenda'),
 
+    path('add-programkerja/',views.addprogramkerja, name='add-programkerja'),
 ]
