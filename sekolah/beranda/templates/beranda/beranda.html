@@ -145,20 +145,14 @@
 <section>
     <div class="container py-5">
         <div class="row">
+            {% for v in video  %}
             <div class="col-md-6 ">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KPvd-pRiFQ0?si=plvwCKlzVsLcGEmU"
+<iframe width="560" height="315" src="{{v.videos}}"
     title="YouTube video player" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
-                               
             </div>
-            <div class="col-md-6 ">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KPvd-pRiFQ0?si=plvwCKlzVsLcGEmU"
-    title="YouTube video player" frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen></iframe>
-                               
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

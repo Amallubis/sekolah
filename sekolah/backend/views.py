@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda, ProgramKerja, Download
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda, FormProgramKerja, FormDownload
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda, ProgramKerja, Download, Video
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda, FormProgramKerja, FormDownload, FormVideo
 from beranda.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -425,7 +425,50 @@ def download(request):
         if form.is_valid():
             form.save()
             messages.success(request,'Berhasil upload files')
-            return render(request,'backend/download.html',{'form':form})
+            download = Download.objects.all()
+            return render(request,'backend/download.html',{'form':form, 'download':download})
     else:
+        download = Download.objects.all()
         form = FormDownload()
-        return render(request,'backend/download.html',{'form':form})
+        return render(request,'backend/download.html',{'form':form,'download':download})
+    
+    
+def download_edit(request, id_edit):
+    if request.POST:
+        download = Download.objects.get(id=id_edit)
+        form = FormDownload(request.POST, request.FILES, instance=download)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil diupdate')
+            download = Download.objects.get(id=id_edit)
+            return render(request,'backend/download-edit.html',{'form':form,'download':download})
+    else:
+        download = Download.objects.get(id=id_edit)
+        form = FormDownload(instance=download)
+        return render(request,'backend/download-edit.html',{'form':form,'download':download})
+    
+@login_required(login_url=settings.LOGIN_URL)
+def download_delete(request,id_delete):
+    download = Download.objects.get(id = id_delete)
+    download.delete()
+    return redirect('download')
+
+@login_required(login_url=settings.LOGIN_URL)
+def video(request):
+    if request.POST:
+        form = FormVideo(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil Upload Video')
+            video = Video.objects.all()
+            form = FormVideo()
+            return render(request,'backend/video.html',{'form':form,'video':video})
+    else:
+        form = FormVideo() 
+        video = Video.objects.all()
+        return render(request,'backend/video.html',{'form':form,'video':video})
+@login_required(login_url=settings.LOGIN_URL)
+def video_delete(request,id_delete):
+    video= Video.objects.get(id = id_delete)
+    video.delete()
+    return redirect('video')

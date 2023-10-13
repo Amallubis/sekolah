@@ -46,4 +46,8 @@ urlpatterns = [
 
 
     path('donwload/',views.download, name='download'),
+    path('donwload-edit/<int:id_edit>/',views.download_edit, name='download-edit'),
+    path('donwload-delete/<int:id_delete>/',views.download_delete, name='download-delete'),
+    path('video/',views.video, name='video'),
+    path('video-delete/<int:id_delete>/',views.video_delete, name='video-delete'),
 ]

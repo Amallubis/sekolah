@@ -10,7 +10,7 @@
         {% endif %}
         {% endfor %}
         <div class="col-md-8">
-            <form action="{% url 'download' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'video' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form | crispy}}
                 <button type="submit" class="btn btn-primary mt-2 ">Tambah</button>
@@ -23,17 +23,15 @@
                 <thead>
                     <tr>
                         <th>Judul</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal</th>
+                        <th>Link Video</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for s in download %}
+                    {% for s in video%}
                     <tr>
-                        <td>{{s.judul}}</td>
-                        <td>{{s.kegiatan}}</td>
-                        <td>{{s.jadwal}}</td>
+                        <td>{{s.Judul}}</td>
+                        <td>{{s.videos}}</td>
                         <td>
                         <!-- Button trigger modal -->
                         <a href="#"data-bs-toggle="modal" data-bs-target="#exampleModal"><ion-icon name="trash-outline" size="large"></ion-icon></a>
@@ -46,16 +44,15 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Apakah Anda yakin menghapus:{{s.judul}}
+                                        Apakah Anda yakin menghapus:{{s.Judul}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="{% url 'download-delete' s.id %}" class="btn btn-danger">Delete</a>
+                                        <a href="{% url 'video-delete' s.id %}" class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <a href="{% url 'download-edit' s.id %}"><ion-icon name="hammer-outline"size="large" ></ion-icon></a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum, ProgramKerja, Download
+from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum, ProgramKerja, Download, Video
 from beranda.forms import FormContact
 
 import datetime
@@ -14,6 +14,7 @@ def beranda(request):
     footer = Footer.objects.get(pk=1)
     now = datetime.datetime.now()
     running = Runningtext.objects.get(pk=1)
+    video = Video.objects.all()
     
     context ={
         'title':'Sekolah Advent Lubuk Pakam',
@@ -24,7 +25,8 @@ def beranda(request):
         'running':running,
         'agenda':agenda,
         'header':header,
-        'footer':footer
+        'footer':footer,
+        'video':video
     }
     return render(request,'beranda/beranda.html',context)
 
@@ -205,4 +207,15 @@ def beranda_download(request):
         'footer':footer
     }
     return render(request,'beranda/beranda-download.html',context)
+def beranda_video(request):
+    header = Header.objects.get(pk=1)
+    footer = Footer.objects.get(pk=1)
+    video = Video.objects.all()
+    context ={
+        'title':'Download',
+        'video':video,
+        'header':header,
+        'footer':footer
+    }
+    return render(request,'beranda/beranda-video.html',context)
     
