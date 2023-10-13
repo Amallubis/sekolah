@@ -13,4 +13,6 @@ urlpatterns = [
     path('programsekolah/',views.programsekolah, name='programsekolah'),
     path('beranda-prestasi/',views.beranda_prestasi, name='beranda-prestasi'),
     path('beranda-beritaall/',views.beranda_beritaall, name='beranda-beritaall'),
+    path('beranda-jadwal/',views.beranda_jadwal, name='beranda-jadwal'),
+    path('beranda-download/',views.beranda_download, name='beranda-download'),
 ]

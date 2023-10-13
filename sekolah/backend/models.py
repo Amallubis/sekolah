@@ -90,6 +90,21 @@ class Agenda(models.Model):
     jadwal = models.DateTimeField(null=True)
     def __str__(self):
         return self.judul
+
+        
+        
+class Download(models.Model):
+    judul = models.CharField(max_length=255)
+    keterangan = models.TextField()
+    files = models.FileField(upload_to='files/')
+    def __str__(self):
+        return self.judul
+
+class Video(models.Model):
+    Judul = models.CharField(max_length=255)
+    videos = models.CharField(max_length=255)
+    def __str__(self):
+        return self.judul
 #settingan 
 
 class Runningtext(models.Model):

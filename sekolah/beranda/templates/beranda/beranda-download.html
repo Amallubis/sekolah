@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block contents %}
+{% include "snippet/header.html" %}
+<!-- SHOWOFF 1 -->
+<section id="showoff-1" class="bg-light text-muted py-5" data-aos="fade-up">
+    <div class="container">
+    <div class="row">
+        <div class="col">
+        <ol class="breadcrumb bg-white ms-0 mt-4 mb-4">
+            <li class="breadcrumb-item">
+                <a href="{% url 'beranda' %}" class="text-info text-decoration-none">
+                    Home</a>
+            </li>
+            <li class="breadcrumb-item active">Produk Hukum</li>
+        </ol>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="background-color:#1A3153; color:white" class="py-2 text-center">FILE DOWNLOAD</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Nama File </th>
+                        <th>Keterangan</th>
+                        <th>Download</th>
+                    </tr>
+                    {% for k in download %}
+                    <tr>
+                        <td>{{k.judul}}</td>
+                        <td>{{k.keterangan}}</td>
+                        <td>
+                            <a href="{{k.files.url}}" download>
+                            <i class="bi bi-cloud-download"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

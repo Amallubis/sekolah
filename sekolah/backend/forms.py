@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, Berita, Header, Footer, PrestasiSekolah, Kurikulum, Runningtext, Agenda,ProgramKerja
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, Berita, Header, Footer, PrestasiSekolah, Kurikulum, Runningtext, Agenda,ProgramKerja, Download
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 class FormSejarah(ModelForm):
     class Meta:
@@ -83,4 +83,10 @@ class FormAgenda(ModelForm):
 class FormProgramKerja(ModelForm):
     class Meta:
         model = ProgramKerja
+        fields = '__all__'
+        
+        
+class FormDownload(ModelForm):
+    class Meta:
+        model = Download
         fields = '__all__'

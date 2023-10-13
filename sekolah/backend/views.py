@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda, ProgramKerja
-from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda, FormProgramKerja
+from backend.models import Sejarah, PrakataKepalaSekolah,PrakataKepalaSekolahsmp,VisidanMisi,StrukturOrganisasi,Berita, Footer, Header, PrestasiSekolah, Kurikulum, Runningtext, Agenda, ProgramKerja, Download
+from backend.forms import FormSejarah, FormPrakata,FormPrakatasmp, FormVisidanMisi, FormStrukturOrganisasi, FormBerita, FormFooter,FormHeader, FormPrestasiSekolah, FormKurikulum, FormRunningtext,FormAgenda, FormProgramKerja, FormDownload
 from beranda.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -337,7 +337,7 @@ def runningtext(request):
         form = FormRunningtext(instance=running)
         return render(request,'backend/running-text.html',{'form':form})
 
-        
+@login_required(login_url=settings.LOGIN_URL)   
 def agenda(request):
     if request.POST:
         form = FormAgenda(request.POST)
@@ -352,6 +352,7 @@ def agenda(request):
         agenda = Agenda.objects.all()
         return render(request,'backend/agenda.html',{'form':form,'agenda':agenda})
     
+@login_required(login_url=settings.LOGIN_URL)   
 def edit_agenda(request,id_edit):
     if request.POST:
         agenda = Agenda.objects.get(id=id_edit)
@@ -367,12 +368,14 @@ def edit_agenda(request,id_edit):
         return render(request,'backend/edit-agenda.html',{'form':form,'agenda':agenda})
 
         
+@login_required(login_url=settings.LOGIN_URL)   
 def delete_agenda(request,id_delete):
     agenda = Agenda.objects.get(id=id_delete)
     agenda.delete()
     return redirect('agenda')
 
 
+@login_required(login_url=settings.LOGIN_URL)   
 def addprogramkerja(request):
     programkerja = ProgramKerja.objects.all().order_by('-pk')
     if request.POST:
@@ -391,6 +394,7 @@ def addprogramkerja(request):
         
         
 
+@login_required(login_url=settings.LOGIN_URL)   
 def editprogramkerja(request,id_edit):
     if request.POST:
         programkerja = ProgramKerja.objects.get(id = id_edit)
@@ -407,7 +411,21 @@ def editprogramkerja(request,id_edit):
         return render(request,'backend/edit-programkerja.html',{'form':form,'programkerja':programkerja})
 
         
+@login_required(login_url=settings.LOGIN_URL)   
 def delete_programkerja(request,id_delete):
     programkerja = ProgramKerja.objects.get(id=id_delete)
     programkerja.delete()
     return redirect('add-programkerja')
+
+
+@login_required(login_url=settings.LOGIN_URL)
+def download(request):
+    if request.POST:
+        form = FormDownload(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Berhasil upload files')
+            return render(request,'backend/download.html',{'form':form})
+    else:
+        form = FormDownload()
+        return render(request,'backend/download.html',{'form':form})
