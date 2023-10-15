@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage,Page,PageNotAnInteger
 from backend.models import Berita, Footer, Header, Sejarah, PrakataKepalaSekolah, PrakataKepalaSekolahsmp, VisidanMisi, StrukturOrganisasi, PrestasiSekolah, Runningtext, Agenda, Kurikulum, ProgramKerja, Download, Video
 from beranda.forms import FormContact
 
@@ -175,6 +176,16 @@ def beranda_beritaall(request):
     header = Header.objects.get(pk=1)
     footer = Footer.objects.get(pk=1)
     berita = Berita.objects.all()
+    beritas = Berita.objects.all()
+    paginator = Paginator(beritas, 4)
+    page = request.GET.get('page')
+
+    try:
+        berita = paginator.page(page)
+    except EmptyPage:
+        berita = paginator.page(paginator.num)
+    except PageNotAnInteger:
+        berita = paginator.page(1)
     context = {
         'title':'Berita',
         'header':header,

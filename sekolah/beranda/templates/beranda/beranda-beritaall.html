@@ -29,6 +29,17 @@
         </div>
           
         {% endfor %}
+        Page {{berita.number}} from {{berita.paginator.num_pages}}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if berita.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{berita.previous_page_number}}">Previous</a></li>
+                        {% endif %}
+                        {% if berita.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{berita.next_page_number}}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
     </div>
 </section>
 {% endblock contents %}
