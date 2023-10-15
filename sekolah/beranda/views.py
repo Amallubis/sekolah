@@ -229,4 +229,15 @@ def beranda_video(request):
         'footer':footer
     }
     return render(request,'beranda/beranda-video.html',context)
+
+
+def privacy(request):
+    header = Header.objects.get(pk=1)
+    footer = Footer.objects.get(pk=1)
+    context ={
+        'title':'Privacy Policy',
+        'header':header,
+        'footer':footer,
+    }
+    return render(request,'beranda/privacy.html',context)
     

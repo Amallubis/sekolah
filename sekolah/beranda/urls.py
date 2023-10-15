@@ -15,4 +15,5 @@ urlpatterns = [
     path('beranda-beritaall/',views.beranda_beritaall, name='beranda-beritaall'),
     path('beranda-jadwal/',views.beranda_jadwal, name='beranda-jadwal'),
     path('beranda-download/',views.beranda_download, name='beranda-download'),
+    path('beranda-privacy/',views.privacy, name='beranda-privacy'),
 ]
